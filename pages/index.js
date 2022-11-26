@@ -62,13 +62,13 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <CardSection header='Free-to-Watch Anime!' description='Watch some of our most popular titles right here!'/>
-        <CardSection header={`I'm Gonna Be a Star!`} description='These idols are determined to take over the musical world!'/>
+        <CardSection header='Free-to-Watch Anime!' isFree={true} description='Watch some of our most popular titles right here!'/>
+        <CardSection header={`I'm Gonna Be a Star!`} isFree={false} description='These idols are determined to take over the musical world!'/>
       </section>
       <section>
         <CrunchyNews/>
       </section>
-      <section className="mt-10">
+      <section className="mt-10 pb-96">
         <CardSection header='Most Popular'/>
       </section>
     
