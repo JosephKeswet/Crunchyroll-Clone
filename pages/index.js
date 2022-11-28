@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import CardSection from "../components/CardSection";
-import CrunchyNews from "../components/CrunchyNews";
+import { useGetActionAnimeQuery, useGetAdventureAnimeQuery, useGetMusicAnimeQuery, useGetMysteryAnimeQuery } from "../redux/services/animeApi";
+import StartWatching from "../components/StartWatching";
 // import { setInterval } from "timers/promises";
 
 export default function Home() {
@@ -18,17 +19,47 @@ export default function Home() {
   //     setIndex()
   //   })
   // }
-  useEffect(() => {
-    setImage(MHA) 
-  }, [])
+  const {data:adventureData,isSuccess} = useGetAdventureAnimeQuery();
+  const {data:musicData} = useGetMusicAnimeQuery()
+  const {data:mysteryData} = useGetMysteryAnimeQuery()
+  const [newAdventureArr,setAdventure] = useState([])
+  const [newMusicArr,setMusic] = useState([])
+  const [newMysteryArr,setMystery] = useState([])
 
-  setTimeout(()=>{
-    setImage(Spy) 
-  },3000)
+
+  useEffect(() =>{
+    const newAdventureArray = []
+    const newMusicArray = []
+    const newMysteryArray = []
+    if (isSuccess) {
+     adventureData && adventureData['data']?.map((anime) => {
+        const animeArray = anime['attributes'];
+        newAdventureArray.push(animeArray)
+      })
+
+      musicData && musicData['data']?.map((anime) => {
+        const animeArray = anime['attributes'];
+        newMusicArray.push(animeArray)
+      })
+
+      mysteryData && mysteryData['data']?.map((anime) => {
+        const animeArray = anime['attributes'];
+        newMysteryArray.push(animeArray)
+      })
+    }
+
+    setAdventure(newAdventureArray);
+    setMusic(newMusicArray);
+    setMystery(newMysteryArray);
+
+
+  },[adventureData,musicData,mysteryData])
+
+
   
   
   return (
-    <div className="bg-black h-full">
+    <div className="bg-black  h-full">
       <div className="h-12">
       <Navbar/>
       </div>
@@ -38,7 +69,7 @@ export default function Home() {
               <FontAwesomeIcon icon={faChevronLeft} className='text-sm sm:text-3xl  font-extrabold '/>
           </div>
           <div className="w-[20rem] h-[30rem] z-10 md:w-[35rem] md:h-[30rem]  lg:w-[50rem] lg:h-[30rem] flex ">
-            <Image src={image}  width={800} height={800} className='object-cover'/>
+            <Image src={Spy} alt='Top cover image'  width={800} height={800} className='object-cover'/>
           </div>
              {/* <div className="hidden z-10 sm:w-[55rem] sm:h-[15rem] md:w-[65rem] md:h-[18rem]  lg:w-[100rem] lg:h-[25rem] sm:flex ">
             <Image src={SpyLarge}  width={800} height={800}  objectFit="cover"/>
@@ -62,15 +93,16 @@ export default function Home() {
         </div>
       </section>
       <section>
-        <CardSection header='Free-to-Watch Anime!' description='Watch some of our most popular titles right here!'/>
-        <CardSection header={`I'm Gonna Be a Star!`} description='These idols are determined to take over the musical world!'/>
+        <CardSection header='Free-to-Watch Anime!' animeArray={newAdventureArr} description='Watch some of our most popular titles right here!'/>
+        <CardSection header={`I'm Gonna Be a Star!`} animeArray={newMusicArr} description='These idols are determined to take over the musical world!'/>
       </section>
       <section>
-        <CrunchyNews/>
+        <StartWatching/>
       </section>
-      <section className="mt-10">
-        <CardSection header='Most Popular'/>
+      <section className="mt-6 ">
+        <CardSection header='Most Popular' animeArray={newMysteryArr}  />
       </section>
+    
     
     </div>
   )
