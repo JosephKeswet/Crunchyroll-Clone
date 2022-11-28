@@ -24,10 +24,10 @@ const Navbar = () => {
                 </div>
                 <main>
                     <div className='w-16 h-16 sm:hidden flex items-center justify-center cursor-pointer '>
-                        <Image src={YellowLogo}  objectFit='contain' />
+                        <Image src={YellowLogo} alt='Logo' objectFit='contain' />
                     </div>
                     <div className='w-48 h-16 pl-4 lg:pl-10 lg:w-56 hidden sm:flex items-center justify-center cursor-pointer '>
-                        <Image src={Big_Logo}  objectFit='contain' />
+                        <Image src={Big_Logo} alt='Logo' objectFit='contain' />
                     </div>
                 </main>
                 <main className='flex  ml-4 '>

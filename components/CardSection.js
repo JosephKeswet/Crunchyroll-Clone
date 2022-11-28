@@ -2,30 +2,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from 'react'
 import MovieCard from './MovieCard';
-import { useGetAdventureAnimeQuery, useGetMusicAnimeQuery} from '../redux/services/animeApi';
+import { useGetActionAnimeQuery, useGetAdventureAnimeQuery, useGetMusicAnimeQuery} from '../redux/services/animeApi';
 
 
-const CardSection = ({header,description,isFree}) => {
-  const [animes,setAnimes] = useState([]);
-  const {data:adventureData,isSuccess} = useGetAdventureAnimeQuery();
-  const {data:musicData} = useGetMusicAnimeQuery()
-  useEffect(() =>{
-    const newAdventureArray = []
-    const newMusicArray = []
-    if (isSuccess) {
-     adventureData && adventureData['data']?.map((anime) => {
-        const animeArray = anime['attributes'];
-        newAdventureArray.push(animeArray)
-      })
+const CardSection = ({header,description,animeArray}) => {
 
-      musicData && musicData['data']?.map((anime) => {
-        const animeArray = anime['attributes'];
-        newMusicArray.push(animeArray)
-      })
-    }
-
-    isFree ? setAnimes(newAdventureArray) : setAnimes(newMusicArray);
-  },[adventureData,musicData])
 
   return (
     <div>
@@ -42,10 +23,12 @@ const CardSection = ({header,description,isFree}) => {
                 <div className="hidden sm:w-10 sm:h-10 md:w-14 md:h-12 sm:flex items-center justify-center w-5 h-[35rem]  cursor-pointer ease-in-out duration-300 hover:bg-gray-800">
                   <FontAwesomeIcon icon={faChevronLeft} className='text-sm sm:text-3xl text-white  font-extrabold '/>
                 </div>
-                    <div className="w-auto mt-8 flex items-center gap-5 overflow-hidden overflow-x-auto scrollbar-hide">
-                      {animes.map((anime) => {
+                    <div className="w-auto mt-8 flex items-center gap-0 overflow-hidden overflow-x-auto scrollbar-hide">
+                      {animeArray.map((anime) => {
                         const posterImg = anime['posterImage']?.original
-                        return <MovieCard img={posterImg} title={anime?.canonicalTitle}/>
+                        return <div key={anime.id}>
+                                  <MovieCard img={posterImg} title={anime?.canonicalTitle}/>
+                              </div>
                       })}
                     </div>
                 <div className="hidden sm:w-10 sm:h-10 md:w-14 md:h-12 sm:flex items-center justify-center w-5 h-[35rem]  cursor-pointer ease-in-out duration-300  hover:bg-gray-800">

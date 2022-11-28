@@ -5,12 +5,18 @@ export const animeApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:process.env.NEXT_PUBLIC_BASE_URL}),
     endpoints:(builder) => ({
         getAdventureAnime:builder.query({
-            query: () => `anime?filter[categories]=adventure`
+            query: () => `adventure`
         }),
         getMusicAnime:builder.query({
-            query: () => `anime?filter[categories]=music`
+            query: () => `music`
+        }),
+        getMysteryAnime:builder.query({
+            query: () => `mystery`
+        }),
+        getSportAnime:builder.query({
+            query: () => `sports`
         }),
     }),
 })
 
-export const { useGetAdventureAnimeQuery, useGetMusicAnimeQuery } = animeApi
+export const { useGetAdventureAnimeQuery, useGetMusicAnimeQuery, useGetMysteryAnimeQuery, useGetSportAnimeQuery } = animeApi
