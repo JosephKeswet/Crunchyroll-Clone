@@ -15,7 +15,7 @@ const CardSection = ({header,description,animeArray}) => {
               <div>
               <h1 className="text-white text-2xl font-Poppins font-medium mb-2 sm:text-3xl sm:font-semibold ">{header}</h1>
               <h2 className="text-white text-sm font-Poppins sm:text-base">{description}</h2>
-              <div className="bg-blue-400 w-auto h-1 mt-3 mr-8 md:mr-20"/>
+              <div className="bg-blue-400 w-auto max-w-[80rem] h-1 mt-3 mr-8 md:mr-20 lg:mr-72 xl:mr-0"/>
               </div>
         </main>
         </section>

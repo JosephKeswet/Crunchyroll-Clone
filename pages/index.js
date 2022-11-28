@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import CardSection from "../components/CardSection";
 import { useGetActionAnimeQuery, useGetAdventureAnimeQuery, useGetMusicAnimeQuery, useGetMysteryAnimeQuery } from "../redux/services/animeApi";
 import StartWatching from "../components/StartWatching";
+import Footer from "../components/Footer";
 // import { setInterval } from "timers/promises";
 
 export default function Home() {
@@ -59,7 +60,7 @@ export default function Home() {
   
   
   return (
-    <div className="bg-black  h-full">
+    <div className="bg-black w-full   h-full">
       <div className="h-12">
       <Navbar/>
       </div>
@@ -102,7 +103,9 @@ export default function Home() {
       <section className="mt-6 ">
         <CardSection header='Most Popular' animeArray={newMysteryArr}  />
       </section>
-    
+      <footer>
+        <Footer/>
+      </footer>
     
     </div>
   )
