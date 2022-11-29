@@ -60,7 +60,7 @@ export default function Home() {
   
   
   return (
-    <div className="bg-black w-full   h-full">
+    <div className="bg-black overflow-hidden   w-full h-full">
       <div className="h-12">
       <Navbar/>
       </div>
@@ -80,6 +80,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
       <section className="lg:hidden mt-4 pb-12 mx-4 flex items-center justify-center gap-3">
           <div className="w-14 h-[0.4rem] cursor-pointer bg-gray-400"/>
           <div className="w-14 h-[0.25rem] cursor-pointer hover:h-[0.4rem] bg-white ease-in-out duration-50"/>
@@ -88,12 +89,7 @@ export default function Home() {
           <div className="w-14 h-[0.25rem] cursor-pointer hover:h-[0.4rem] bg-white ease-in-out duration-50"/>
           <div className="w-14 h-[0.25rem] cursor-pointer hover:h-[0.4rem] bg-white ease-in-out duration-50"/>
       </section>
-      <section className="lg:flex justify-center hidden lg:mt-4 lg:mb-14">
-        <div className="bg-gray-800 w-48 h-14">
-          {/* Mini Cards */}
-        </div>
-      </section>
-      <section>
+      <section className="lg:mt-20">
         <CardSection header='Free-to-Watch Anime!' animeArray={newAdventureArr} description='Watch some of our most popular titles right here!'/>
         <CardSection header={`I'm Gonna Be a Star!`} animeArray={newMusicArr} description='These idols are determined to take over the musical world!'/>
       </section>
@@ -103,7 +99,7 @@ export default function Home() {
       <section className="mt-6 ">
         <CardSection header='Most Popular' animeArray={newMysteryArr}  />
       </section>
-      <footer>
+      <footer className="mt-6 md:mt-14 ">
         <Footer/>
       </footer>
     
