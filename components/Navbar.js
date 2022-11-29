@@ -11,15 +11,20 @@ import DropdownItems from './DropdownItems'
 const Navbar = () => {
     const [showDrop,setShowDrop] = useState(false);
     const handleDropShow = ()=>{
-        showDrop ? setShowDrop(false) : setShowDrop(true)
+        showDrop ? setShowDrop(false) : setShowDrop(true);
     };
+    const [genre,setGenre] = useState(false)
+    const handleshowGenre = () => {
+        genre ? setGenre(false) : setGenre(true);
+    }
   return (
     <div>
         <nav className='w-full fixed   z-30  h-16 flex items-center justify-between  bg-gray-800'>
             <section className='flex items-center'>
-                <div className='w-16 h-16 flex items-center justify-center cursor-pointer ease-in-out duration-150 hover:bg-gray-900 hover:text-white text-gray-50 
-                lg:hidden
-                '>
+                <div className={`w-16 h-16 flex items-center justify-center cursor-pointer ease-in-out duration-150 hover:bg-gray-900 hover:text-white ${showDrop && 'bg-gray-900'} text-gray-50 
+                lg:hidden`}
+                onClick={handleDropShow}
+                >
                     <FontAwesomeIcon icon={faBars} className='text-2xl'/>
                 </div>
                 <main>
@@ -39,9 +44,9 @@ const Navbar = () => {
                             <h1 className='text-white text-base font-Poppins font-medium'>Browse</h1>
                             <FontAwesomeIcon icon={faCaretDown} className='text-base text-white pb-1'/>
                     </div>
-                    {showDrop ? <div className='w-full h-80 bg-gray-900 text-black absolute z-20 top-[64px] left-0 right-0'>
-                        <section className='flex mt-8 ml-64'>
-                            <div className='mr-14'>
+                    {showDrop ? <div className='w-full hidden lg:flex h-80 bg-gray-900 text-black absolute z-20 top-[64px] left-0 right-0'>
+                        <section className='flex mt-8 md:ml20 xl:ml-64'>
+                            <div className=' mr-14'>
                                 <DropdownItems list={['Popular','New','Alphabetical','Simulcast Season','Release Calendar']}/>
                             </div>
                             <div className='pt-4 h-64 border-gray-700 border-[0.01rem] border-solid'/>
@@ -55,6 +60,50 @@ const Navbar = () => {
                             <div className='ml-10 mt-6 '>
                                 <DropdownItems list={['Shonen','Slice of life','Sports','Supernatural','Thriller']} color='text-gray-200'/>
                             </div>
+                        </section>
+                    </div> : null}
+                    {showDrop ? <div className='text-white absolute w-screen h-screen overflow-scroll bg-gray-900 left-0 right-0 z-20 top-16 lg:hidden'>
+                        <section className='mt-6'>
+                            <h1 className='pl-4 text-xs font-Poppins font-semibold text-gray-500'>BROWSE</h1>
+                            <ul className='flex flex-col mt-4'>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300
+                                
+                                '>Popular</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>New</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>Alphabetical</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>Simulcast Season</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>Release Calendar</li>
+                                <li className='flex items-center justify-between w-full h-10 pl-4  font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300' 
+                                onClick={handleshowGenre}
+                                >
+                                    Genres
+                                    <FontAwesomeIcon icon={faCaretDown} className='mr-12 text-xl'/>
+                                </li>
+                            </ul>
+                            {genre && <ul className='bg-gray-800 '>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Action</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Adventure</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Comedy</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Drama</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Fantasy</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Music</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Romance</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Sports</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Supernatural</li>
+                                <li className='flex items-center w-full h-12 hover:bg-zinc-700 pl-8 '>Thriller</li>
+                            </ul>}
+                            <hr className='mt-2'/>
+                            <ul className='flex flex-col mt-4'>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300
+                                
+                                '>Manga</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>Games</li>
+                                <li className='w-full h-12 pl-4 flex items-center font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>Store</li>
+                                <li className='flex items-center justify-between w-full h-10 pl-4  font-Poppins font-medium hover:bg-gray-700 cursor-pointer ease-in-out duration-300'>
+                                    News
+                                    <FontAwesomeIcon icon={faCaretDown} className='mr-12 text-xl'/>
+                                </li>
+                            </ul>
                         </section>
                     </div> : null}
                     <div className='w-20 h-16 lg:flex items-center justify-center gap-2 cursor-pointer ease-in-out duration-150 hover:bg-gray-900
