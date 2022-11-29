@@ -30,7 +30,7 @@ const StartWatching = () => {
         setDescription(description);
 
     }
-  },[posterImg,animeTitle,description])
+  },[posterImg,animeTitle,description,sportData])
 
 
 
