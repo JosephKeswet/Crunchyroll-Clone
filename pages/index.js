@@ -62,7 +62,7 @@ export default function Home() {
   
   
   return (
-    <div className="bg-black overflow-hidden   w-full h-full">
+    <div className="bg-black overflow-hidden  fixed overflow-y-scroll  w-full h-full">
       <div className="h-12">
       <Navbar/>
       </div>
