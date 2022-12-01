@@ -31,11 +31,11 @@ const MusicSection = ({header,description,animeArray}) => {
                     <div className="w-auto mt-8 flex items-center gap-0 overflow-hidden overflow-x-auto scrollbar-hide">
                       {animeArray.map((anime,index) => {
                         const posterImg = anime['posterImage']?.original
-                        return  <div key={anime.index} onClick={() => dispatch(setGenre('music'))}>
-                            <Link href={`/${index}`}>
+                        return  <Link href={`/${index}`} key={index}>
+                            <div  onClick={() => dispatch(setGenre('music'))}>
                                   <MovieCard img={posterImg} title={anime?.canonicalTitle}/>
-                            </Link>      
-                        </div>
+                            </div>
+                        </Link>      
                       })}
                     </div>
                 <div className="hidden sm:w-10 sm:h-10 md:w-14 md:h-12 sm:flex items-center justify-center w-5 h-[35rem]  cursor-pointer ease-in-out duration-300  hover:bg-gray-800">
