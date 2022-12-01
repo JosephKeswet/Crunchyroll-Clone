@@ -49,7 +49,7 @@ const Navbar = () => {
                             <h1 className='text-white text-base font-Poppins font-medium'>Browse</h1>
                             <FontAwesomeIcon icon={faCaretDown} className='text-base text-white pb-1'/>
                     </div>
-                    {showDrop ? <div className='w-full hidden lg:flex h-80 bg-gray-900 text-black absolute z-20 top-[64px] left-0 right-0'>
+                    {showDrop ? <div className='w-full hidden lg:flex h-80 bg-gray-900 text-black absolute z-20 top-[64px]  left-0 right-0'>
                         <section className='flex mt-8 md:ml20 xl:ml-64'>
                             <div className=' mr-14'>
                                 <DropdownItems list={['Popular','New','Alphabetical','Simulcast Season','Release Calendar']}/>
@@ -67,7 +67,7 @@ const Navbar = () => {
                             </div>
                         </section>
                     </div> : null}
-                    {showDrop ? <div className='text-white absolute w-screen h-screen overflow-scroll bg-gray-900 left-0 right-0 z-20 top-16 lg:hidden'>
+                    {showDrop ? <div className='text-white absolute w-screen h-screen overflow-scroll bg-gray-900 pb-20 left-0 right-0 z-20 top-16 lg:hidden'>
                         <section className='mt-6'>
                             <h1 className='pl-4 text-xs font-Poppins font-semibold text-gray-500'>BROWSE</h1>
                             <ul className='flex flex-col mt-4'>

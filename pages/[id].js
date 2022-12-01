@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import Navbar from '../components/Navbar';
 import { useGetAdventureAnimeQuery, useGetMusicAnimeQuery, useGetMysteryAnimeQuery } from '../redux/services/animeApi';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import Footer from '../components/Footer';
 
 const SingleAnime = () => {
     const router = useRouter()
@@ -64,55 +65,78 @@ const SingleAnime = () => {
 
       }
   
-    },[adventureData,musicData,mysteryData])
+    },[adventureData,musicData,mysteryData,readmore])
 
   return (
     <div>
-      <section>
+      <section className='bg-black fixed overflow-y-scroll overflow-hidden h-full'>
         <Navbar/>
-        <div className='flex justify-center items-center w-screen relative top-12 bottom-0 h-[30rem]'>
-          <img src={posterUrl} className='w-[20rem] absolute z-10' alt={`${animeName} + 'Poster Image'`}/>
-          <img src={posterUrl} className='w-screen h-[22rem] absolute blur-2xl' alt={`${animeName} + 'Blurred Background'`}/>
+        <div className='flex justify-center items-center w-screen right-0 left-0 overflow-hidden relative top-12 bottom-0 h-[30rem]
+        md:top-[3.5rem]
+        '>
+          <div className='w-[20rem] absolute top-4 bottom-0 md:top-0 z-10 
+          md:w-[30rem] object-contain'>
+          <img src={posterUrl} className='w-[20rem] absolute z-10 
+          md:w-[30rem] ' alt={`${animeName} + 'Poster Image'`}/>
+          </div> 
+          <img src={posterUrl} className='w-screen h-[22rem] bottom-0 absolute blur-2xl' alt={`${animeName} + 'Blurred Background'`}/>
         </div>
-        <div className='bg-black h-auto mt-[2.2rem]'> 
-          <main className='mx-4'>
+        <div className='bg-black  w-screen h-auto  mt-[2.2rem]
+        md:mt-14
+        '> 
+          <main className='mx-6 sm:mx-8 md:mx-10 lg:mx-28 xl:mx-52'>
               <div className='pt-6'>
                 <h1 className='text-white text-2xl mb-2'>{animeName}</h1>
                 <p className='text-gray-400'>217videos * Sub | Dub</p>
-                <div className='flex items-center gap-2 mt-4'>
+         
+                <section className='flex flex-col gap-4 mt-3
+                sm:flex sm:flex-row sm:items-center
+                '>
+                <div className='flex items-center gap-2'>
                   <FontAwesomeIcon icon={faStar} className='text-gray-300 text-2xl'/>
                   <FontAwesomeIcon icon={faStar} className='text-gray-300 text-2xl'/>
                   <FontAwesomeIcon icon={faStar} className='text-gray-300 text-2xl'/>
                   <FontAwesomeIcon icon={faStar} className='text-gray-300 text-2xl'/>
                   <FontAwesomeIcon icon={faStar} className='text-gray-300 text-2xl'/>
                 </div>
-                <section className='flex items-center mt-3'>
+                  <section className='flex items-center'>
                   <div className='flex items-center gap-2'>
                     <p className='text-gray-300 text-sm'>Average Rating: <span className='text-white'>4.8(27.8K)</span></p>
                     <FontAwesomeIcon icon={faCaretDown} className='text-white'/>
                   </div>
                   <hr className='rotate-90 w-4'/>
                   <p className='text-gray-300 text-sm'>{rank.toLocaleString()} Reviews</p>
+                  </section>
                 </section>
               </div>
-              <section className='mt-6 flex items-center gap-4'>
-                    <button className='w-[18rem] h-[2.5rem] flex items-center justify-center gap-4 bg-orange-400'>
-                      <FontAwesomeIcon icon={faPlayCircle} className='text-lg'/>
-                      <h1 className='text-base font-medium'>START WATCHING S1 E1</h1>
-                    </button>
-                    <div className='w-[2.4rem] h-[2.5rem] flex items-center justify-center border-2 border-orange-400'>
-                      <FontAwesomeIcon icon={faBookmark} className='text-xl text-orange-400'/>
-                    </div>
-              </section>
-              <section className='flex items-center gap-3 mt-4 ml-2'>
-                <FontAwesomeIcon icon={faPlus} className='text-gray-300 text-2xl'/>
-                <p className='text-gray-300 text-base'>ADD TO CRUNCHYLIST</p>
-              </section>
-              <section className='mt-6'>
-                <p className={`text-white ${readmore ? 'line-clamp-6' : ''}`}>{description} </p>
-                <p className='text-gray-400 pb-4' onClick={handleReadMore}>Read More</p>
+
+              <main className='flex flex-col
+              sm:flex sm:flex-row sm:items-center
+              '>
+                  <section className='mt-6 flex items-center gap-4'>
+                        <button className='w-[18rem] h-[2.5rem] flex items-center justify-center gap-4 bg-orange-400
+                        sm:w-[20rem]
+                        '>
+                          <FontAwesomeIcon icon={faPlayCircle} className='text-lg'/>
+                          <h1 className='text-base font-medium'>START WATCHING S1 E1</h1>
+                        </button>
+                        <div className='w-[2.4rem] h-[2.5rem] flex items-center justify-center border-2 border-orange-400'>
+                          <FontAwesomeIcon icon={faBookmark} className='text-xl text-orange-400'/>
+                        </div>
+                  </section>
+                  <section className='flex items-center gap-3 mt-4 ml-2'>
+                    <FontAwesomeIcon icon={faPlus} className='text-gray-300 text-2xl'/>
+                    <p className='text-gray-300 text-base'>ADD TO CRUNCHYLIST</p>
+                  </section>
+              </main>
+              <section className='mt-6 xl:pb-20'>
+                <p className={`text-white ${readmore ? 'line-clamp-3' : ''}`}>{description} </p>
+                <p className='text-gray-400 pb-4 cursor-pointer xl:hidden' onClick={handleReadMore}>Read More</p>
               </section>
             </main>
+            <div className='mt-20'>
+              <Footer/>
+            </div>
          </div>
       </section>
     </div>
