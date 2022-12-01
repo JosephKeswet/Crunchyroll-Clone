@@ -6,10 +6,12 @@ import SpyLarge from '../Assets/img/Spy-Large.webp'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import CardSection from "../components/CardSection";
 import { useGetActionAnimeQuery, useGetAdventureAnimeQuery, useGetMusicAnimeQuery, useGetMysteryAnimeQuery } from "../redux/services/animeApi";
 import StartWatching from "../components/StartWatching";
 import Footer from "../components/Footer";
+import AdventureSection from "../components/AdventureSection";
+import MusicSection from "../components/MusicSection";
+import MysterySection from "../components/MysterySection";
 // import { setInterval } from "timers/promises";
 
 export default function Home() {
@@ -90,14 +92,14 @@ export default function Home() {
           <div className="w-14 h-[0.25rem] cursor-pointer hover:h-[0.4rem] bg-white ease-in-out duration-50"/>
       </section>
       <section className="lg:mt-20">
-        <CardSection header='Free-to-Watch Anime!' animeArray={newAdventureArr} description='Watch some of our most popular titles right here!'/>
-        <CardSection header={`I'm Gonna Be a Star!`} animeArray={newMusicArr} description='These idols are determined to take over the musical world!'/>
+        <AdventureSection header='Free-to-Watch Anime!' animeArray={newAdventureArr} description='Watch some of our most popular titles right here!'/>
+        <MusicSection header={`I'm Gonna Be a Star!`} animeArray={newMusicArr} description='These idols are determined to take over the musical world!'/>
       </section>
       <section>
         <StartWatching/>
       </section>
       <section className="mt-6 ">
-        <CardSection header='Most Popular' animeArray={newMysteryArr}  />
+        <MysterySection header='Most Popular' animeArray={newMysteryArr}/>
       </section>
       <footer className="mt-6 md:mt-14 ">
         <Footer/>

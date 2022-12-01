@@ -6,9 +6,7 @@ import { animeApi } from '../redux/services/animeApi'
 
 function MyApp({ Component, pageProps }) {
   return <Provider store={store}>
-            <ApiProvider api={animeApi}>
               <Component {...pageProps} />
-            </ApiProvider>
           </Provider>
 
 }

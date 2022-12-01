@@ -2,13 +2,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from 'react'
 import MovieCard from './MovieCard';
-import { useGetActionAnimeQuery, useGetAdventureAnimeQuery, useGetMusicAnimeQuery} from '../redux/services/animeApi';
+import { setGenre } from '../redux/genreSlice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
-const CardSection = ({header,description,animeArray}) => {
 
-
+const MusicSection = ({header,description,animeArray}) => {
+    const dispatch = useDispatch()
+    const router = useRouter()
   return (
+    <div>
     <div>
          <section className="pl-6 pb-2 sm:pl-8 md:pl-10 xl:pl-6 lg:w-[80rem] lg:mx-auto ">
           <main>
@@ -24,11 +29,13 @@ const CardSection = ({header,description,animeArray}) => {
                   <FontAwesomeIcon icon={faChevronLeft} className='text-sm sm:text-3xl text-white  font-extrabold '/>
                 </div>
                     <div className="w-auto mt-8 flex items-center gap-0 overflow-hidden overflow-x-auto scrollbar-hide">
-                      {animeArray.map((anime) => {
+                      {animeArray.map((anime,index) => {
                         const posterImg = anime['posterImage']?.original
-                        return <div key={anime.id}>
+                        return  <div key={anime.index} onClick={() => dispatch(setGenre('music'))}>
+                            <Link href={`/${index}`}>
                                   <MovieCard img={posterImg} title={anime?.canonicalTitle}/>
-                              </div>
+                            </Link>      
+                        </div>
                       })}
                     </div>
                 <div className="hidden sm:w-10 sm:h-10 md:w-14 md:h-12 sm:flex items-center justify-center w-5 h-[35rem]  cursor-pointer ease-in-out duration-300  hover:bg-gray-800">
@@ -36,7 +43,8 @@ const CardSection = ({header,description,animeArray}) => {
                 </div>
             </section>
     </div>
+    </div>
   )
 }
 
-export default CardSection
+export default MusicSection
