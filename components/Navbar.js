@@ -7,6 +7,7 @@ import { faBars, faCrown, faMagnifyingGlass, faUser, faCaretDown } from '@fortaw
 import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 import { useState } from 'react'
 import DropdownItems from './DropdownItems'
+import Link from 'next/link'
 
 const Navbar = () => {
     const [showDrop,setShowDrop] = useState(false);
@@ -28,12 +29,16 @@ const Navbar = () => {
                     <FontAwesomeIcon icon={faBars} className='text-2xl'/>
                 </div>
                 <main>
-                    <div className='w-16 h-16 sm:hidden flex items-center justify-center cursor-pointer '>
-                        <Image src={YellowLogo} alt='Logo' objectFit='contain' />
-                    </div>
-                    <div className='w-48 h-16 pl-4 lg:pl-10 lg:w-56 hidden sm:flex items-center justify-center cursor-pointer '>
-                        <Image src={Big_Logo} alt='Logo' objectFit='contain' />
-                    </div>
+                    <Link href='/'>
+                        <div className='w-16 h-16 sm:hidden flex items-center justify-center cursor-pointer '>
+                            <Image src={YellowLogo} alt='Logo' objectFit='contain' />
+                        </div>
+                    </Link>
+                    <Link href='/'>
+                        <div className='w-48 h-16 pl-4 lg:pl-10 lg:w-56 hidden sm:flex items-center justify-center cursor-pointer '>
+                            <Image src={Big_Logo} alt='Logo' objectFit='contain' />
+                        </div>
+                    </Link>
                 </main>
                 <main className='flex  ml-4 '>
                     <div className={`w-28 h-16 lg:flex items-center justify-center gap-2 cursor-pointer ease-in-out duration-150 hover:bg-gray-900 ${showDrop && 'bg-gray-900'}
